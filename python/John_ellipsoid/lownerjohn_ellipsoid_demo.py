@@ -80,13 +80,29 @@ x_in = Ci[0][0] * np.cos(theta) + Ci[0][1] * np.sin(theta) + di[0]
 y_in = Ci[1][0] * np.cos(theta) + Ci[1][1] * np.sin(theta) + di[1]
 ax.plot(x_in, y_in,'g', label='Inner ellipsoid')
 
+xs2_in = np.sqrt(2) * (x_in - di[0]) + di[0]
+ys2_in = np.sqrt(2) * (y_in - di[1]) + di[1]
+ax.plot(xs2_in, ys2_in, 'c--', label='sqrt(2) * Inner Ellipsoid')
+
 x2_in = 2 * (x_in - di[0]) + di[0]
 y2_in = 2 * (y_in - di[1]) + di[1]
 ax.plot(x2_in, y2_in, 'c--', label='2 * Inner Ellipsoid')
 #The outer ellipse
-x_out, y_out = np.meshgrid(np.arange(-1.0, 8.0, 0.025), np.arange(-3.0, 6.5, 0.025))
+margin = 10
+x_out, y_out = np.meshgrid(
+    np.linspace(co[0] - margin, co[0] + margin, 500),
+    np.linspace(co[1] - margin, co[1] + margin, 500)
+)
 ax.contour(x_out, y_out, (Po[0][0] * x_out + Po[0][1] * y_out - co[0])**2 + (Po[1][0] * x_out + Po[1][1] * y_out - co[1])**2, [1])
-ax.autoscale_view()
+
+x_min = min(di[0], co[0]) - margin
+x_max = max(di[0], co[0]) + margin
+y_min = min(di[1], co[1]) - margin
+y_max = max(di[1], co[1]) + margin
+
+ax.set_xlim(x_min, x_max)
+ax.set_ylim(y_min, y_max)
+
 ax.xaxis.set_visible(False)
 ax.yaxis.set_visible(False)
 ax.grid(True)
