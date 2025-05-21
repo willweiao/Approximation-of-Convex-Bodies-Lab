@@ -5,10 +5,17 @@ import matplotlib.patches as patches
 from scipy.spatial import ConvexHull
 from lownerjohn_ellipsoid import lownerjohn_inner, lownerjohn_outer
 
+
+# === Description ===
+"""
+The chapter about john ellipsoid: https://people.math.sc.edu/howard/notes/john.pdf
+The Algorithm designed by Mosek which I directly used here: https://docs.mosek.com/11.0/pythonfusion/case-studies-ellipsoids.html
+"""
+
 # === STEP 1: interactive input ===
 """
 When input a polygon, avoid making an abnormal one, e.g. too sharp at one end or very flat as a whole, which will lead to 
-issues at visualization.
+issues in visualization.
 """
 
 plt.ion()  
