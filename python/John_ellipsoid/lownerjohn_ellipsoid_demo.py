@@ -95,13 +95,16 @@ x_out, y_out = np.meshgrid(
 )
 ax.contour(x_out, y_out, (Po[0][0] * x_out + Po[0][1] * y_out - co[0])**2 + (Po[1][0] * x_out + Po[1][1] * y_out - co[1])**2, [1])
 
-x_min = min(di[0], co[0]) - margin
-x_max = max(di[0], co[0]) + margin
-y_min = min(di[1], co[1]) - margin
-y_max = max(di[1], co[1]) + margin
+#x_min = min(di[0], co[0]) - margin
+#x_max = max(di[0], co[0]) + margin
+#y_min = min(di[1], co[1]) - margin
+#y_max = max(di[1], co[1]) + margin
 
-ax.set_xlim(x_min, x_max)
-ax.set_ylim(y_min, y_max)
+#ax.set_xlim(x_min, x_max)
+#ax.set_ylim(y_min, y_max)
+ax.relim()
+ax.autoscale_view()
+ax.set_aspect('equal', adjustable='box')
 
 ax.xaxis.set_visible(False)
 ax.yaxis.set_visible(False)
