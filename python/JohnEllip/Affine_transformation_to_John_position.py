@@ -18,16 +18,16 @@ def apply_john_normalization(x, C, d):
     return C_inv @ (x - d)
 
 # Compute area of polygon given ordered vertices p
-def polygon_area(p):
-    x = p[:, 0]
-    y = p[:, 1]
+def polygon_area(vertices):
+    vertices=np.array(vertices)
+    x, y = vertices[:, 0], vertices[:, 1]
     return 0.5 * abs(np.dot(x, np.roll(y, -1)) - np.dot(y, np.roll(x, -1)))
-
 
 # === Main ===
 if __name__ == '__main__':
     #Vertices of a polygon in 2D
-    p = [[0., 0.], [1., 3.], [5.5, 4.5], [7., 4.], [7., 1.], [3., -2.]]
+    #p = [[0., 0.], [1., 3.], [5.5, 4.5], [7., 4.], [7., 1.], [3., -2.]]   # general convex body
+    p = [[-4., 0.], [-3., 3.], [2., 3.], [3., 2.], [4., 0.], [3., -3.], [-2., -3.], [-3., -2.]]   # symmetric convex body
     nVerts = len(p)
 
     #The hyperplane representation of the same polytope
@@ -47,7 +47,9 @@ if __name__ == '__main__':
 
     Cin, din = lownerjohn_inner(AN, bn)
 
-    # Volume
+    # Area
+    area_p=polygon_area(p)
+    area_np=polygon_area(norm_p)
 
     # Visualization
     fig, axes = plt.subplots(1, 2, figsize=(10, 5))
@@ -61,6 +63,7 @@ if __name__ == '__main__':
     axes[0].set_title("Original")
     axes[0].axis('equal')
     axes[0].grid(True)
+    axes[0].text(0.5, -0.1, f"Area = {area_p:.2f}", ha='center', va='top', transform=axes[0].transAxes, fontsize=12)
 
     # Normalized
     axes[1].add_patch(patches.Polygon(norm_p, fill=False, color="blue", linewidth=2))
@@ -71,6 +74,7 @@ if __name__ == '__main__':
     axes[1].set_title("John Normalized")
     axes[1].axis('equal')
     axes[1].grid(True)
+    axes[1].text(0.5, -0.1, f"Area = {area_np:.2f}", ha='center', va='top', transform=axes[1].transAxes, fontsize=12)
 
     plt.tight_layout()
     plt.show()
