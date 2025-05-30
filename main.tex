@@ -30,8 +30,10 @@
 % load additional packages
 \usepackage{booktabs}
 \usepackage{graphicx}
+\usepackage{tikz}
 \usepackage{subcaption}
 \usepackage{amsmath, amsthm}
+\usepackage{enumitem}
 
 % presentation metadata
 \title{Seminar: Convex Geometry}
@@ -90,11 +92,11 @@
 \begin{frame}{Introduction to John's Ellipsoids}{John's Theorem}
     \begin{center}
     \begin{theorem}[John's Ellipsoid Theorem]
-      Let $C \subset\mathbb{R}^d$ be a convex body. Then there exists an ellipsoid $E$ (called the \textbf{John ellipsoid}) such that if $c$ is the center of $E$, then the following inclusions hold:
+      Let $C \subset\mathbb{R}^d$ be a convex body. Then there exists an ellipsoid $E$ of maximum volume in $C$(called the \textbf{John ellipsoid}) such that if $c$ is the center of $E$, then the following inclusions hold:
     \[
     E \subseteq C \subseteq c + d(E - c),
     \]
-    In particular, if $C$ is symmetric in origin, then the tighter bound holds：
+    In particular, if $C$ is symmetric in origin, then the tighter bound holds:
     \[
     E \subseteq C \subseteq c + \sqrt{d}(E - c),
     \]
@@ -114,7 +116,6 @@
       \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{plots/asym_2.png}
       \end{subfigure}
-       \label{fig:enter-label}
   \end{figure}
 \end{frame}
 
@@ -133,17 +134,28 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Uniqueness and John's Characterization Theorem}
+\begin{frame}{Uniqueness and John's Characterization Theorem}{Theorem}
 \centering
 \begin{theorem}
   If $C \subset R^{d}$ be a convex body, then the inner ellipsoid of maximal volume is unique.
 \end{theorem}
-\begin{theorem}[]
-
+\begin{theorem}[John's Characterization]
+  Let $C \in \mathcal{C}_{p}$ be symmetric in origin and $B^{d} \subseteq C$. Then the following statments are equivalent:
+  \begin{enumerate}[label=(\roman*)]
+    \item $B^{d}$ is the unique John's Ellipsoid in $C$
+    \item There are $u_{i} \in B^{d}\cap bdC$ and $\lambda_{i}>0$, $i=1,...,m$, where $d\leq m\leq \frac{1}{2}d(d+1)$, such that
+    \[
+      I=\sum\lambda_{i}u_{i}\otimes u_{i}, \sum \lambda_{i}=d.
+    \]
+  \end{enumerate}
 \end{theorem}
 \end{frame}
 
-\begin{frame}{John's Characterization Theorem}{$B^{d}$ as inner John's Ellipsoid}
+\begin{frame}{John's Characterization Theorem}{Proof Sketch}
+  \begin{itemize}
+    \item $\mathcal{E}=\{A\in \mathcal{P}: Au\cdot v\leq h_{C}(v) for all u,v \in bd B^{d}\}$, where $\mathcal{P}$ stands for all symmetric positive definite $d\times d$ matrices  
+    \item $\mathcal{D}=\{A\in \mathcal{P}: det(A)\geq 1\}$ is a closed, smooth and strictly convex set in $\mathcal{P}$ with non-empty interior.
+  \end{itemize}
 
 \end{frame}
 
@@ -173,7 +185,7 @@
 \end{frame}
 
 \begin{frame}{Proof of Reverse Isoperimetric Inequality}{using John's Characterization Theorem}
-Brascamp–Lieb inequality:
+Brascamp-Lieb inequality:
 
 \end{frame}
 
