@@ -195,3 +195,9 @@ data/processed/model_instance_chunks/
 # .ptf
 *.ptf
 
+#latex
+*.aux
+*.fls
+*.fdb_latexmk
+*.pdf
+tum/*
