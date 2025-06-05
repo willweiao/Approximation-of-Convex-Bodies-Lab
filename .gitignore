@@ -190,7 +190,7 @@ data/processed/solve_results/
 data/processed/model_instance_chunks/
 
 # images
-*.png
+# *.png
 
 # .ptf
 *.ptf
