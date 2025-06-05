@@ -200,6 +200,5 @@ data/processed/model_instance_chunks/
 *.tex
 *.fls
 *.fdb_latexmk
-*.pdf
 tum/*
 latexmkrc
